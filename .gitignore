@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+env/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Datasets (download separately — see README "Data")
+archive/
+dataset/
+*.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local backups / scratch
+app_original_backup.py
+app_before_ui_update.py
+*_v1.json
+*_v2.json
+*_unfiltered.json

@@ -1,0 +1,47 @@
+{
+ "dev": [
+  {
+   "config": "built-in dictionary only",
+   "model_acc": 0.43233333333333335,
+   "model_f1": 0.40578352799105827,
+   "sentilens_acc": 0.44366666666666665,
+   "sentilens_f1": 0.43007589833276055
+  },
+  {
+   "config": "learned lexicon min_count=10 log-odds>=0.8 (602 words)",
+   "min_count": 10,
+   "min_logodds": 0.8,
+   "model_acc": 0.43233333333333335,
+   "model_f1": 0.40578352799105827,
+   "sentilens_acc": 0.511,
+   "sentilens_f1": 0.5105924584963549
+  },
+  {
+   "config": "learned lexicon min_count=10 log-odds>=1.2 (338 words)",
+   "min_count": 10,
+   "min_logodds": 1.2,
+   "model_acc": 0.43233333333333335,
+   "model_f1": 0.40578352799105827,
+   "sentilens_acc": 0.5123333333333333,
+   "sentilens_f1": 0.5167537004321923
+  },
+  {
+   "config": "learned lexicon min_count=25 log-odds>=0.8 (267 words)",
+   "min_count": 25,
+   "min_logodds": 0.8,
+   "model_acc": 0.43233333333333335,
+   "model_f1": 0.40578352799105827,
+   "sentilens_acc": 0.5146666666666667,
+   "sentilens_f1": 0.5158593616842436
+  },
+  {
+   "config": "learned lexicon min_count=25 log-odds>=1.2 (156 words)",
+   "min_count": 25,
+   "min_logodds": 1.2,
+   "model_acc": 0.43233333333333335,
+   "model_f1": 0.40578352799105827,
+   "sentilens_acc": 0.509,
+   "sentilens_f1": 0.5139509061047923
+  }
+ ]
+}

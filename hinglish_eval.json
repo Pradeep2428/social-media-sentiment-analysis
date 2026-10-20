@@ -1,0 +1,37 @@
+{
+ "test_n": 3000,
+ "lexicon_words": 338,
+ "semeval_builtin": {
+  "model_acc": 0.46,
+  "model_f1": 0.44240106311866817,
+  "sentilens_acc": 0.472,
+  "sentilens_f1": 0.4622388356513721
+ },
+ "semeval_learned": {
+  "model_acc": 0.46,
+  "model_f1": 0.44240106311866817,
+  "sentilens_acc": 0.5493333333333333,
+  "sentilens_f1": 0.5540635217287083
+ },
+ "youtube_n": 3190,
+ "youtube_columns": [
+  "comment",
+  "sentiment"
+ ],
+ "youtube_builtin": {
+  "model_acc": 0.3739811912225705,
+  "model_f1": 0.3749224825942749,
+  "sentilens_acc": 0.49310344827586206,
+  "sentilens_f1": 0.4915739474886763
+ },
+ "youtube_learned": {
+  "model_acc": 0.3739811912225705,
+  "model_f1": 0.3749224825942749,
+  "sentilens_acc": 0.5278996865203762,
+  "sentilens_f1": 0.5039610420219188
+ },
+ "reference_trained_on_hinglish": {
+  "acc": 0.6606666666666666,
+  "f1": 0.6595916106949958
+ }
+}
