@@ -1,5 +1,6 @@
-# SentiLens — context-aware sentiment analysis
 
+# SentiLens — context-aware sentiment analysis
+link https://github.com/Pradeep2428/social-media-sentiment-analysis
 A social-media sentiment analyzer that **explains every prediction**, **tests itself honestly**, and
 reads **Hinglish** (Hindi-English code-mix). Built on classic TF-IDF + Logistic Regression, with a
 transparent rule layer on top — no black box.
