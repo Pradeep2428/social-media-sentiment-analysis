@@ -1,0 +1,56 @@
+{
+ "n": 11560,
+ "model_acc": 0.6440311418685121,
+ "sentilens_acc": 0.6443771626297577,
+ "changed": 1193,
+ "fixed": 473,
+ "broke": 469,
+ "by_rule": {
+  "input change (brand masking / translation)": {
+   "changed": 644,
+   "fixed": 269,
+   "broke": 257
+  },
+  "neutral fallback": {
+   "changed": 167,
+   "fixed": 32,
+   "broke": 80
+  },
+  "lexicon override": {
+   "changed": 190,
+   "fixed": 82,
+   "broke": 60
+  },
+  "negated praise": {
+   "changed": 29,
+   "fixed": 16,
+   "broke": 10
+  },
+  "complaint": {
+   "changed": 9,
+   "fixed": 5,
+   "broke": 3
+  },
+  "mixed": {
+   "changed": 72,
+   "fixed": 37,
+   "broke": 22
+  },
+  "sarcasm": {
+   "changed": 9,
+   "fixed": 1,
+   "broke": 8
+  },
+  "negated criticism": {
+   "changed": 68,
+   "fixed": 30,
+   "broke": 29
+  },
+  "hedging": {
+   "changed": 5,
+   "fixed": 1,
+   "broke": 0
+  }
+ },
+ "split": "test"
+}

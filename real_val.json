@@ -1,0 +1,137 @@
+{
+ "n": 9356,
+ "model_acc": 0.6734715690466011,
+ "sentilens_acc": 0.6619281744335186,
+ "changed": 944,
+ "fixed": 319,
+ "broke": 427,
+ "by_rule": {
+  "input change (brand masking / translation)": {
+   "changed": 557,
+   "fixed": 198,
+   "broke": 254,
+   "examples": [
+    "[Positive -> Negative] Just uninstalled all of my other games to make space for Borderlands 3 . ",
+    "[Positive -> Negative] Just uninstalled all of my other games will make space for Borderlands 3.",
+    "[Positive -> Negative] Just uninstalled all other of my my other games to make space for watching Borderlands 3.",
+    "[Positive -> Negative] Just uninstalled all of all other games in make space for Borderlands 3.",
+    "[Positive -> Negative] Bioshock AND borderlands coming to the switch bitch count me the fuck in",
+    "[Positive -> Negative] Bioshock AND borderlands coming to the switch bitch count me the fuck in",
+    "[Positive -> Negative] Bioshock And borderlands coming to the switch bitch count me the fuck in",
+    "[Positive -> Negative] Bioshock AND borderlands coming to the desert bitch count me the fuck in"
+   ]
+  },
+  "lexicon override": {
+   "changed": 138,
+   "fixed": 52,
+   "broke": 45,
+   "examples": [
+    "[Negative -> Positive] @ NBA2K my pre-order bonuses are not displayed",
+    "[Negative -> Positive] @ N2K my pre-order bonuses don't show",
+    "[Negative -> Positive] Wow @ NBA2K y'all need to do something about it",
+    "[Negative -> Positive] Wow @ N2K y'all gdo something about this",
+    "[Negative -> Positive] Wow @NBA2K y\u2019all gotta do something like this",
+    "[Neutral -> Negative] Making crappy personal til<unk> 3 day trial redd.it/itorke",
+    "[Negative -> Positive] Dota 2 makes the Champions League attractive",
+    "[Neutral -> Negative] 4 They killed him redd. it / an imlqze"
+   ]
+  },
+  "hedging": {
+   "changed": 5,
+   "fixed": 0,
+   "broke": 5,
+   "examples": [
+    "[Positive -> Neutral] Happy 4th of July!!!! Borderlands 3 kind of night! twitch.tv / its _ shadow2",
+    "[Positive -> Neutral] I guess I should watch this since I am playing it tonight . ",
+    "[Positive -> Neutral] I guess I should watch this since I am streaming it tonight.",
+    "[Positive -> Neutral] I guess Hearthstone loves me. @ PlayHearthstone pic.twitter.com / XYE9iC0qui",
+    "[Positive -> Neutral] I guess Hearthstone loves me. @ PlayHearthstone pic.fm / XYE9iC0qui"
+   ]
+  },
+  "sarcasm": {
+   "changed": 8,
+   "fixed": 0,
+   "broke": 7,
+   "examples": [
+    "[Positive -> Negative] Wow, Borderlands the Dead was 2014 and I still haven't played it",
+    "[Positive -> Negative] Thanks for coming by the stream everyone! Had some angry moments, stupid moments and moments where siege crashed my PC lol  ",
+    "[Positive -> Negative] Thank you for coming through the stream all! Had some angry moments, stupid moments and moments where siege crashed my PC lol",
+    "[Positive -> Negative] Thanks for sitting by the stream everyone! Had some angry moments, great moments and moments where siege crashed my PC lol",
+    "[Positive -> Negative] Thanks for coming by the stream everyone! Had some angry magical moments, stupid happy moments there and moments where siege crashed my PC the lol",
+    "[Neutral -> Negative] The pages latest The Late Falk Hedemann to Daily! paper. li / Wissenssucher? \u2026 5 Thanks to Henry @lenadoppel",
+    "[Neutral -> Negative] Nice to share the start day with @ Nvidia. and @ PlayStation, but all the hardware doesn't solve your delay problem... Don't be a race car with tiny wheels hold"
+   ]
+  },
+  "neutral fallback": {
+   "changed": 148,
+   "fixed": 56,
+   "broke": 65,
+   "examples": [
+    "[Negative -> Neutral] I tried the single auto-sprint in",
+    "[Positive -> Neutral] DON\u2019t be FUCKEN LATE",
+    "[Positive -> Neutral] DON\u2019t be FUCKEN \u2026",
+    "[Positive -> Neutral] DON\u2019t be FUCKEN TO",
+    "[Negative -> Neutral] @ PlayOverwatch pic.twitter.com / Nw684FR0OF",
+    "[Negative -> Neutral] now i'm just a",
+    "[Positive -> Neutral] Moments like these are moments I like 2k sometimes.",
+    "[Negative -> Neutral] ARCANA 2018"
+   ]
+  },
+  "negated criticism": {
+   "changed": 32,
+   "fixed": 4,
+   "broke": 24,
+   "examples": [
+    "[Negative -> Neutral] I'm sorry I can't imagine giving a shit in this the year of our lord 2020",
+    "[Negative -> Neutral] I'm sorry I can't imagine doing a shit in this year of our Lord 2020",
+    "[Negative -> Neutral] I'm sorry I can't imagine giving a shit in this the year of our lord 2020",
+    "[Negative -> Neutral] I'm sorry I can't imagine giving a shit in being the year of our lord 2020",
+    "[Negative -> Neutral] I'm sorry they can't imagine showing a shit in this the year of our for 2020",
+    "[Negative -> Neutral] Amazon says your parcels were delivered but they were not smh",
+    "[Negative -> Neutral] ........ Please don't piss it off.",
+    "[Negative -> Neutral] Because I too am not freddy and i despise dota 2 - Casey"
+   ]
+  },
+  "mixed": {
+   "changed": 38,
+   "fixed": 7,
+   "broke": 16,
+   "examples": [
+    "[Neutral -> Negative] US WoW Token Price: 123,764g. Change: .  -354g. 24Hr High: 125,428g. 24Hr Low: 119,190g.  ",
+    "[Neutral -> Negative] US WoW token price: 123.764g. Change:. -354g. 24Hr High: 125,428g. 24Hr Low: 11,190g.",
+    "[Neutral -> Negative] US WoW Token Price: 151,057g. Change: .  265g. 24Hr High: 154,680g. 24Hr Low: 145,517g.  ",
+    "[Neutral -> Negative] US WoW Token Price: 151,057g. Change: 265g. 24Hr High: 154,680g. 24Hr Low: 145,517g.",
+    "[Neutral -> Negative] US WoW Token Price: 151,057g. Change: 0 <unk>. 24Hr Higher: 154,680g. 24Hr Low: 145,517g.",
+    "[Neutral -> Negative] 6 hours to google and meet De sa StatsXFil collab group development work. YOU WAS IT FULFILLING? YES! And BUT 15 AM... I HAPPY ABOUT IF IT? NO.",
+    "[Negative -> Positive] @EAHelp I hopped on fifa and I see half my team not in my club I checked the quick sell recovery and they weren\u2019t there so I thought I was hacked but I checked ",
+    "[Negative -> Positive] @EAHelp I hopped on fifa and I see half my team not in my club I checked a quick sell recovery and they weren\u2019t there so I thought everything was hacked but I c"
+   ]
+  },
+  "complaint": {
+   "changed": 11,
+   "fixed": 1,
+   "broke": 6,
+   "examples": [
+    "[Neutral -> Negative] The Unfit on Amazon Thursday evening. It's riveting. Maybe don't recommend it for bed, probably best in daylight.",
+    "[Positive -> Negative] To all the people who want to play VALORANT and are saying they are gonna pursue it professionally, . . go play 100 hours of CSGO, if you still like the game th",
+    "[Positive -> Negative] To all those who want to play VALORANT and say that they will follow it professionally,... play 100 hours CSGO, if you still like the game, then I think it woul",
+    "[Positive -> Negative] To all the people who want to play VALORANT and say they're going to do it professionally... go play 100 hours of CSGO, if you still like the game then I think ",
+    "[Positive -> Negative] To all these developers who wanted to continue VALORANT and are saying they are gonna pursue it professionally,.. go play 100 hours pure CSGO, if you still like",
+    "[Positive -> Negative] I plan to play Red Dead Redemption all night and get stoned and have no regrets whatsoever."
+   ]
+  },
+  "negated praise": {
+   "changed": 7,
+   "fixed": 1,
+   "broke": 5,
+   "examples": [
+    "[Positive -> Negative] I'm not excited for this",
+    "[Positive -> Neutral] It's no secret that I love Assassins Creed.",
+    "[Positive -> Negative] Can't wait for my friend / husband to teach me FIFA or PES or whatever.",
+    "[Positive -> Negative] I have not played gta in so longgg that I miss it",
+    "[Positive -> Neutral] i haven't played gta in so longggg i miss it"
+   ]
+  }
+ },
+ "split": "val"
+}

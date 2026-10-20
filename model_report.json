@@ -1,0 +1,64 @@
+{
+ "test_rows": 11560,
+ "labels": [
+  "Negative",
+  "Neutral",
+  "Positive"
+ ],
+ "original": {
+  "accuracy": 0.6306228373702422,
+  "macro_f1": 0.6236052853780737,
+  "per_class_f1": {
+   "Negative": 0.6798826979472141,
+   "Neutral": 0.5431559232089902,
+   "Positive": 0.6477772349780166
+  },
+  "confusion": [
+   [
+    2898,
+    592,
+    651
+   ],
+   [
+    794,
+    1740,
+    899
+   ],
+   [
+    692,
+    642,
+    2652
+   ]
+  ],
+  "train_rows": 48594
+ },
+ "improved": {
+  "accuracy": 0.6440311418685121,
+  "macro_f1": 0.6369847899577068,
+  "per_class_f1": {
+   "Negative": 0.6928256326909682,
+   "Neutral": 0.5573923892701186,
+   "Positive": 0.6607363479120336
+  },
+  "confusion": [
+   [
+    2984,
+    576,
+    581
+   ],
+   [
+    793,
+    1787,
+    853
+   ],
+   [
+    696,
+    616,
+    2674
+   ]
+  ],
+  "train_rows": 44269
+ },
+ "deployed_rows": 55171,
+ "settings": "TF-IDF word 1-2 grams (sublinear tf, min_df=2, max_df=0.9) + Logistic Regression (C=0.5, balanced classes); duplicates removed"
+}
