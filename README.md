@@ -49,6 +49,7 @@ comparable skills). Big gains on sarcasm (5% → 88%) and Hinglish (28% → 90%)
 | Tab | What it does |
 |---|---|
 | **Analyze a post** | Verdict, per-word explanation, class probabilities, clause-by-clause breakdown |
+| **Batch analysis** | Upload a CSV of unlabelled reviews → verdict for every post, where the context layer changed the base model, sentiment per aspect (battery, camera, price…), CSV download |
 | **Stress test** | CheckList-style behaviour tests, held-out vs practice split, per-skill pass rates |
 | **Topics** | Upload a labelled CSV → most-discussed topics and sentiment mix per topic |
 | **Evaluation** | Leakage audit, honest accuracy, per-class F1, confusion matrix, real-tweet impact, Hinglish results |
@@ -80,10 +81,21 @@ you open the Evaluation tab's experiments.
   then scored once on SemEval **test** and on YouTube comments (never used for tuning). Names and
   religious / community / gender / political words were removed from the learned list (103 words).
 
+### Running it on another laptop
+
+1. Install Python 3.10 or newer (tick **Add Python to PATH** on Windows) and copy this folder to the laptop.
+2. **macOS:** double-click `start_mac.command` (first time: right-click → Open). **Windows:** double-click `start_windows.bat`.
+   The first run creates a virtual environment and installs the packages, which needs internet and takes a few minutes. Later runs start in seconds.
+3. The app opens at `http://localhost:8501`. That address only works on the laptop that is running the app, while the launcher window stays open.
+
 ## Project structure
 
 ```
-app.py                     Streamlit app (5 tabs)
+app.py                     Streamlit app (6 tabs)
+batch.py                   Batch analysis: verdicts + per-aspect sentiment for a whole CSV (tested by test_batch.py)
+start_mac.command          One-click launcher for macOS / Linux (creates the venv, installs, opens the app)
+start_windows.bat          One-click launcher for Windows
+docs/sample_reviews.csv    30 English + Hinglish sample reviews for the Batch tab
 smart_layer.py             Context layer: translation, brand masking, explanations, rules
 behaviour_tests.py         CheckList-style behaviour test suite (practice + held-out splits)
 lab_experiments.py         Model selection + real-tweet and Hinglish experiments (run via ?lab=...)

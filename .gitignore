@@ -30,3 +30,4 @@ app_before_ui_update.py
 *_v1.json
 *_v2.json
 *_unfiltered.json
+!docs/sample_reviews.csv

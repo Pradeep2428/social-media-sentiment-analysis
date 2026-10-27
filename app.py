@@ -10,7 +10,9 @@ import altair as alt
 import streamlit as st
 
 import smart_layer as sl
+import batch
 import behaviour_tests as bt
+importlib.reload(batch)
 importlib.reload(sl)  # pick up edits without restarting Streamlit
 importlib.reload(bt)
 
@@ -584,8 +586,8 @@ COLOR_SCALE = alt.Scale(domain=CLASS_ORDER, range=[TONE[c][0] for c in CLASS_ORD
 # Tabs
 # ---------------------------------------------------------------------------
 
-tab_analyze, tab_stress, tab_topics, tab_eval, tab_about = st.tabs(
-    ["Analyze a post", "Stress test", "Topics", "Evaluation", "How it works"]
+tab_analyze, tab_batch, tab_stress, tab_topics, tab_eval, tab_about = st.tabs(
+    ["Analyze a post", "Batch analysis", "Stress test", "Topics", "Evaluation", "How it works"]
 )
 
 EXAMPLES = {
@@ -693,6 +695,82 @@ def rate_cell(rate, colour):
         return '<td class="rate"><span class="subtle">can’t say “Mixed”</span></td>'
     return (f'<td class="rate"><span class="rnum">{rate*100:.0f}%</span>'
             f'<div class="rbar"><div style="width:{rate*100:.1f}%;background:{colour}"></div></div></td>')
+
+
+@st.cache_data(show_spinner=False)
+def _batch_run(_model, _vectorizer, texts, cache_key):
+    return batch.analyze_posts(_model, _vectorizer, clean_text, list(texts))
+
+
+with tab_batch:
+    H('<p class="lede">Run SentiLens on a whole file of unlabelled reviews or comments. You get a verdict for every post, '
+      'a list of the posts where the context layer changed the base model\'s answer, and a sentiment score for each '
+      'aspect people mention (battery, camera, price and so on).</p>')
+    if model is None or vectorizer is None:
+        st.error("Model files are missing. Put sentiment_model.pkl and tfidf_vectorizer.pkl next to app.py, then reload.")
+    else:
+        up = st.file_uploader("Posts (CSV with one column of text)", type=["csv"], key="batch_csv")
+        sample_csv = os.path.join(BASE_DIR, "docs", "sample_reviews.csv")
+        if up is None and os.path.exists(sample_csv) and st.button("Try the sample reviews (English and Hinglish)"):
+            st.session_state["batch_sample"] = True
+        src = up if up is not None else (sample_csv if st.session_state.get("batch_sample") else None)
+        if src is None:
+            st.caption("Upload a CSV, or try the sample, to see the batch report.")
+        else:
+            try:
+                bdf = pd.read_csv(src)
+                guess = batch.guess_text_column(bdf)
+                if guess is None:
+                    st.error("This CSV has no text column. Add a column of posts and upload it again.")
+                else:
+                    cols_list = list(bdf.columns)
+                    text_col = st.selectbox("Column with the posts", cols_list, index=cols_list.index(guess))
+                    texts = tuple(bdf[text_col].tolist()[:2000])
+                    if len(bdf) > 2000:
+                        st.caption("Only the first 2,000 rows are analysed.")
+                    with st.spinner("Reading every post…"):
+                        out = _batch_run(model, vectorizer, texts, os.path.getmtime(MODEL_PATH))
+                    if out.empty:
+                        st.warning("No non-empty posts were found in that column.")
+                    else:
+                        shares = out["SentiLens"].value_counts(normalize=True) * 100
+                        H(stats_html([
+                            ("posts read", f"{len(out):,}"),
+                            ("positive", f"{shares.get('Positive', 0):.0f}%"),
+                            ("negative", f"{shares.get('Negative', 0):.0f}%"),
+                            ("verdicts changed", f"{int(out['Changed'].sum()):,}"),
+                        ]))
+                        order = CLASS_ORDER + ["Mixed"]
+                        both = pd.DataFrame({
+                            "Model alone": out["Model alone"].value_counts(),
+                            "SentiLens": out["SentiLens"].value_counts(),
+                        }).reindex(order, fill_value=0).fillna(0).reset_index(names="Label")
+                        long = both.melt(id_vars="Label", var_name="Reader", value_name="Posts")
+                        st.markdown("### Model alone vs SentiLens")
+                        st.altair_chart(alt.Chart(long).mark_bar().encode(
+                            x=alt.X("Label:N", sort=order, title=None, axis=alt.Axis(labelAngle=0)),
+                            xOffset="Reader:N",
+                            y=alt.Y("Posts:Q", title="Posts"),
+                            color=alt.Color("Reader:N", scale=alt.Scale(range=["#9AA3AE", "#2C46C9"]), title=None),
+                            tooltip=["Label", "Reader", "Posts"],
+                        ).properties(height=260), use_container_width=True, theme=None)
+
+                        asp = batch.aspect_table(out)
+                        if not asp.empty:
+                            st.markdown("### What people say about each aspect")
+                            st.caption("Net score runs from -1 (all negative) to +1 (all positive).")
+                            st.dataframe(asp, use_container_width=True, hide_index=True)
+
+                        changed = out[out["Changed"]][["Post", "Model alone", "SentiLens", "Why"]]
+                        if not changed.empty:
+                            st.markdown("### Where the context layer changed the answer")
+                            st.dataframe(changed, use_container_width=True, hide_index=True)
+
+                        st.download_button("Download all verdicts (CSV)",
+                                           batch.export_frame(out).to_csv(index=False).encode("utf-8"),
+                                           file_name="sentilens_batch_results.csv", mime="text/csv")
+            except Exception as exc:  # unreadable or malformed file
+                st.error(f"Could not read that file: {exc}")
 
 
 with tab_stress:
