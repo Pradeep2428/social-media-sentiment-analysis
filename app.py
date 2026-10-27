@@ -417,6 +417,36 @@ table.caps .rate { width: 9.5rem; }
   table.cases td.post { max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- light 3D motion (kept subtle; disabled for reduced-motion users) ---------- */
+@keyframes rise3d { from { opacity: 0; transform: perspective(900px) rotateX(10deg) translateY(14px); }
+                    to   { opacity: 1; transform: perspective(900px) rotateX(0) translateY(0); } }
+@keyframes lensSpin { 0%, 100% { transform: perspective(300px) rotateY(0deg) translateY(0); }
+                      50% { transform: perspective(300px) rotateY(180deg) translateY(-3px); } }
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pop { 0% { opacity: 0; transform: perspective(600px) translateZ(-60px) scale(.92); }
+                 100% { opacity: 1; transform: perspective(600px) translateZ(0) scale(1); } }
+@keyframes drift { 0%, 100% { background-position: 0% 0%; } 50% { background-position: 100% 60%; } }
+[data-testid="stMain"] {
+  background-image: radial-gradient(38rem 26rem at 12% 8%, rgba(44,70,201,.07), transparent 70%),
+                    radial-gradient(32rem 24rem at 92% 30%, rgba(19,121,91,.06), transparent 70%) !important;
+  background-size: 130% 130% !important; animation: drift 22s ease-in-out infinite; }
+.mast { animation: rise3d .7s cubic-bezier(.2,.7,.2,1) both; }
+.brand svg { animation: lensSpin 9s ease-in-out infinite; transform-style: preserve-3d; }
+.fact, .stat, .sheet, .finding, .specimen, .verdict-label, .score > div {
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; transform-style: preserve-3d; }
+.fact:hover, .stat:hover, .sheet:hover, .finding:hover {
+  transform: perspective(800px) rotateX(4deg) rotateY(-4deg) translateZ(10px);
+  box-shadow: 0 18px 30px -18px rgba(23,34,31,.35); }
+.stat, .finding { border-radius: 12px; }
+[data-testid="stTabs"] [role="tabpanel"] > div { animation: rise3d .5s cubic-bezier(.2,.7,.2,1) both; }
+.verdict-label { animation: pop .55s cubic-bezier(.2,.9,.3,1.2) both; }
+.probbar > *, .rbar div, .acc .fill, .push .bar { transform-origin: left; animation: growX .8s cubic-bezier(.2,.7,.2,1) both; }
+[data-testid="stBaseButton-primary"] { transition: transform .2s, box-shadow .2s !important; }
+[data-testid="stBaseButton-primary"]:hover { transform: translateY(-2px); box-shadow: 0 10px 18px -10px rgba(44,70,201,.7); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 """)
 
